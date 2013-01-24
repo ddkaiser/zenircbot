@@ -9,6 +9,7 @@ Contributors:
 -------------
 - Eric Holscher
 - Don Park
+- Aaron Parecki
 
 Special Thanks
 --------------
