@@ -12,9 +12,14 @@ zen.register_commands("jenkins.js", []);
 sub.subscribe('web_in');
 sub.on('message', function(channel, message){
 
+	// This handler works with the current (broken) implementation of Jenkins notification JSON
+
+	// https://wiki.jenkins-ci.org/display/JENKINS/Notification+Plugin
+	// https://github.com/jenkinsci/notification-plugin
+	// TODO: clone and patch Jenkins 'Notifiation Plugin' to fix their JSON
+
 	// extract the substring body as a string, prior to JSON.parse
 	// ugly hack for Jenkins improper JSON
-	// TODO: clone and patch Jenkins 'Notifiation Plugin' to fix their JSON
 	var subsbody = message.substring(25, message.length - 5);
 
 	var message = JSON.parse(message);
