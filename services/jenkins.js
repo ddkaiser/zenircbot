@@ -12,7 +12,9 @@ zen.register_commands("jenkins.js", []);
 sub.subscribe('web_in');
 sub.on('message', function(channel, message){
 
-	// extract the substring body
+	// extract the substring body as a string, prior to JSON.parse
+	// ugly hack for Jenkins improper JSON
+	// TODO: clone and patch Jenkins 'Notifiation Plugin' to fix their JSON
 	var subsbody = message.substring(25, message.length - 5);
 
 	var message = JSON.parse(message);
@@ -21,6 +23,7 @@ sub.on('message', function(channel, message){
         return null;
     }
 
+	// parse the substring body to fetch the actual Jenkins notification object
 	var body = JSON.parse(JSON.parse(subsbody));
 
 //	if (body.build.phase != 'FINISHED') {
