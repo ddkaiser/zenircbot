@@ -31,9 +31,9 @@ sub.on('message', function(channel, message){
 	// parse the substring body to fetch the actual Jenkins notification object
 	var body = JSON.parse(JSON.parse(subsbody));
 
-//	if (body.build.phase != 'FINISHED') {
-//		return null;
-//	}
+	if (body.build.phase == 'COMPLETED') {
+		return null;
+	}
 
 	var msg = '';
 	msg = body.name + ': ' + color.blue + body.build.full_url + color.reset + ' -- Build ';
